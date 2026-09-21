@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import sitbLogoAsset from "../assets/sitb-logo.jpg.asset.json";
 import {
   useCallback,
   useEffect,
@@ -31,8 +32,14 @@ export const Route = createFileRoute("/")({
         content:
           "FINORIX PRO crackeD by SITB: live candle chart, market selector and video panel.",
       },
-      { property: "og:image", content: LOGO_URL },
-      { name: "twitter:image", content: LOGO_URL },
+      {
+        property: "og:image",
+        content: `https://finirixprocrackedbysitb.lovable.app${LOGO_URL}`,
+      },
+      {
+        name: "twitter:image",
+        content: `https://finirixprocrackedbysitb.lovable.app${LOGO_URL}`,
+      },
     ],
   }),
   component: Index,
@@ -208,7 +215,7 @@ const CATEGORIES = ["All", "Currency", "Crypto", "Stocks", "Commodities"];
 const JOIN_FREE_URL = "https://t.me/sitbbotfree";
 const FOLLOW_URL = "https://t.me/sitbofficial";
 const QUOTEX_LOGO = "https://i.ibb.co/YFKr1nFR/image.png";
-const LOGO_URL = "https://i.ibb.co/zTwSj9Nj/image.png";
+const LOGO_URL = sitbLogoAsset.url;
 const CANDLE_MS = 60000;
 const CANDLE_COUNT = 240;
 const VALID_KEYS = ["SITB-PRO2026-82762"];
