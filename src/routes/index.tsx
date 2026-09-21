@@ -333,7 +333,7 @@ function drawChart(
     ctx.moveTo(px, 26);
     ctx.lineTo(px, 34 + plotH);
     ctx.stroke();
-    const d = new Date(view[i].time);
+    const d = new Date(view[i]!.time);
     const label = `${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`;
     ctx.fillStyle = "#4d566b";
     ctx.fillText(label, px - 13, h - 9);
@@ -350,7 +350,7 @@ function drawChart(
     ctx.fillRect(px - bodyW / 2, top, bodyW, Math.max(1.4, bottom - top));
   });
 
-  const last = view[view.length - 1];
+  const last = view[view.length - 1]!;
   const lineY = Math.round(y(last.close)) + 0.5;
   const rising = last.close >= last.open;
   const color = rising ? up : down;
@@ -382,9 +382,9 @@ function drawChart(
 }
 
 function Index() {
-  const [market, setMarket] = useState<Market>(MARKETS[0]);
+  const [market, setMarket] = useState<Market>(MARKETS[0]!);
   const [data, setData] = useState<Candle[]>(() =>
-    buildSeries(MARKETS[0], CANDLE_COUNT, CANDLE_MS),
+    buildSeries(MARKETS[0]!, CANDLE_COUNT, CANDLE_MS),
   );
   const [view, setView] = useState(60);
   const [following, setFollowing] = useState(true);
@@ -451,7 +451,7 @@ function Index() {
       ticks += 1;
       setData((prev) => {
         const next = prev.slice();
-        const last = next[next.length - 1];
+        const last = next[next.length - 1]!;
         if (ticks % 12 === 0) {
           next.push({
             time: last.time + CANDLE_MS,
@@ -520,8 +520,8 @@ function Index() {
     );
   }, [query, category]);
 
-  const last = data[data.length - 1];
-  const first = data[Math.max(0, data.length - view)];
+  const last = data[data.length - 1]!;
+  const first = data[Math.max(0, data.length - view)]!;
   const change = ((last.close - first.open) / first.open) * 100;
 
   const addFiles = (files: FileList | null) => {
@@ -532,7 +532,7 @@ function Index() {
       url: URL.createObjectURL(file),
     }));
     setVideos((prev) => [...items, ...prev]);
-    setPlaying(items[0]);
+    setPlaying(items[0]!);
     setVideoOpen(false);
     showToast("Video loaded on chart");
   };
