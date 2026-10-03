@@ -1,4 +1,4 @@
-name: Deploy Vite Site to Pages
+name: Deploy Site to Pages
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         run: npm install --force
 
       - name: Build Project
-        run: npm run build --if-present
+        run: npx vite build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
